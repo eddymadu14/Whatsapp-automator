@@ -9,10 +9,9 @@
 	"workers_dev": true,
 	"main": "src/index.js",
 	"compatibility_date": "2025-09-27",
-	"kv_namespaces": [{
-                    "binding": "KV",
+"kv_namespaces": [{
+                    "binding": "KV_BINDING",
                     "id": "e9d2feaf102c49de80bbbdb6fb4451a0"
-					
                  }],
 	"observability": {
 		"enabled": true

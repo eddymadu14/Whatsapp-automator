@@ -3429,3 +3429,246 @@
 [INFO] [2026-01-09T03:29:41.971Z] [WA] Restoring 0 sessions from Worker KV
 [INFO] [2026-01-09T03:29:41.972Z] Broadcast scheduler started
 [INFO] [2026-01-09T03:29:41.971Z] All connected WhatsApp clients restored
+[INFO] [2026-01-09T03:54:04.823Z] Message queue initialized
+[INFO] [2026-01-09T03:54:06.932Z] MongoDB connected successfully
+[INFO] [2026-01-09T03:54:06.943Z] Backend running on port 5000
+[INFO] [2026-01-09T03:54:07.010Z] [WA] Restoring 0 sessions from Worker KV
+[INFO] [2026-01-09T03:54:07.011Z] All connected WhatsApp clients restored
+[INFO] [2026-01-09T03:54:07.012Z] Broadcast scheduler started
+[INFO] [2026-01-09T04:03:13.959Z] Message queue initialized
+[INFO] [2026-01-09T04:03:15.512Z] MongoDB connected successfully
+[INFO] [2026-01-09T04:03:15.528Z] Backend running on port 5000
+[INFO] [2026-01-09T04:03:15.597Z] [WA] Restoring 0 sessions from Worker KV
+[INFO] [2026-01-09T04:03:15.598Z] All connected WhatsApp clients restored
+[INFO] [2026-01-09T04:03:15.598Z] Broadcast scheduler started
+[INFO] [2026-01-09T04:07:32.697Z] Message queue initialized
+[INFO] [2026-01-09T04:07:35.098Z] MongoDB connected successfully
+[INFO] [2026-01-09T04:07:35.115Z] Backend running on port 5000
+[INFO] [2026-01-09T04:07:35.200Z] [WA] Restoring 0 sessions from Worker KV
+[INFO] [2026-01-09T04:07:35.206Z] All connected WhatsApp clients restored
+[INFO] [2026-01-09T04:07:35.247Z] Broadcast scheduler started
+[INFO] [2026-01-09T04:10:09.946Z] Message queue initialized
+[INFO] [2026-01-09T04:10:11.495Z] MongoDB connected successfully
+[INFO] [2026-01-09T04:10:11.507Z] Backend running on port 5000
+[INFO] [2026-01-09T04:10:11.634Z] [WA] Restoring 0 sessions from Worker KV
+[INFO] [2026-01-09T04:10:11.635Z] All connected WhatsApp clients restored
+[INFO] [2026-01-09T04:10:11.636Z] Broadcast scheduler started
+[INFO] [2026-01-09T04:12:35.186Z] Message queue initialized
+[INFO] [2026-01-09T04:12:36.810Z] MongoDB connected successfully
+[INFO] [2026-01-09T04:12:36.824Z] Backend running on port 5000
+[INFO] [2026-01-09T04:12:36.918Z] [WA] Restoring 0 sessions from Worker KV
+[INFO] [2026-01-09T04:12:36.919Z] All connected WhatsApp clients restored
+[INFO] [2026-01-09T04:12:36.920Z] Broadcast scheduler started
+[INFO] [2026-01-09T04:16:41.524Z] Message queue initialized
+[INFO] [2026-01-09T04:16:43.930Z] MongoDB connected successfully
+[INFO] [2026-01-09T04:16:43.948Z] Backend running on port 5000
+[INFO] [2026-01-09T04:16:44.058Z] [WA] Restoring 0 sessions from Worker KV
+[INFO] [2026-01-09T04:16:44.076Z] All connected WhatsApp clients restored
+[INFO] [2026-01-09T04:16:44.108Z] Broadcast scheduler started
+[INFO] [2026-01-09T04:17:20.429Z] Message queue initialized
+[INFO] [2026-01-09T04:17:22.428Z] MongoDB connected successfully
+[INFO] [2026-01-09T04:17:22.444Z] Backend running on port 5000
+[INFO] [2026-01-09T04:17:22.516Z] [WA] Restoring 0 sessions from Worker KV
+[INFO] [2026-01-09T04:17:22.518Z] All connected WhatsApp clients restored
+[INFO] [2026-01-09T04:17:22.519Z] Broadcast scheduler started
+[INFO] [2026-01-09T04:18:18.887Z] Message queue initialized
+[INFO] [2026-01-09T04:18:20.882Z] MongoDB connected successfully
+[INFO] [2026-01-09T04:18:20.898Z] Backend running on port 5000
+[INFO] [2026-01-09T04:18:21.021Z] [WA] Restoring 0 sessions from Worker KV
+[INFO] [2026-01-09T04:18:21.027Z] All connected WhatsApp clients restored
+[INFO] [2026-01-09T04:18:21.041Z] Broadcast scheduler started
+[INFO] [2026-01-09T04:19:07.058Z] Message queue initialized
+[INFO] [2026-01-09T04:19:08.882Z] MongoDB connected successfully
+[INFO] [2026-01-09T04:19:08.897Z] Backend running on port 5000
+[INFO] [2026-01-09T04:19:08.996Z] [WA] Restoring 0 sessions from Worker KV
+[INFO] [2026-01-09T04:19:08.996Z] All connected WhatsApp clients restored
+[INFO] [2026-01-09T04:19:08.997Z] Broadcast scheduler started
+[INFO] [2026-01-09T04:25:43.522Z] Message queue initialized
+[INFO] [2026-01-09T04:25:46.674Z] MongoDB connected successfully
+[INFO] [2026-01-09T04:25:46.696Z] Backend running on port 5000
+[INFO] [2026-01-09T04:25:46.833Z] [WA] Restoring 0 sessions from Worker KV
+[INFO] [2026-01-09T04:25:46.842Z] All connected WhatsApp clients restored
+[INFO] [2026-01-09T04:25:46.855Z] Broadcast scheduler started
+[INFO] [2026-01-09T04:27:33.401Z] Message queue initialized
+[INFO] [2026-01-09T04:27:35.022Z] MongoDB connected successfully
+[INFO] [2026-01-09T04:27:35.035Z] Backend running on port 5000
+[INFO] [2026-01-09T04:27:35.163Z] [WA] Restoring 0 sessions from Worker KV
+[INFO] [2026-01-09T04:27:35.164Z] All connected WhatsApp clients restored
+[INFO] [2026-01-09T04:27:35.164Z] Broadcast scheduler started
+[INFO] [2026-01-09T04:28:02.427Z] Message queue initialized
+[INFO] [2026-01-09T04:28:04.001Z] MongoDB connected successfully
+[INFO] [2026-01-09T04:28:04.016Z] Backend running on port 5000
+[INFO] [2026-01-09T04:28:04.099Z] [WA] Restoring 0 sessions from Worker KV
+[INFO] [2026-01-09T04:28:04.099Z] All connected WhatsApp clients restored
+[INFO] [2026-01-09T04:28:04.100Z] Broadcast scheduler started
+[INFO] [2026-01-09T04:36:20.728Z] Message queue initialized
+[INFO] [2026-01-09T04:36:22.887Z] MongoDB connected successfully
+[INFO] [2026-01-09T04:36:22.903Z] Backend running on port 5000
+[INFO] [2026-01-09T04:36:22.972Z] [WA] Restoring 0 sessions from Worker KV
+[INFO] [2026-01-09T04:36:22.973Z] All connected WhatsApp clients restored
+[INFO] [2026-01-09T04:36:22.973Z] Broadcast scheduler started
+[INFO] [2026-01-09T04:38:27.266Z] Message queue initialized
+[INFO] [2026-01-09T04:38:30.053Z] MongoDB connected successfully
+[INFO] [2026-01-09T04:38:30.071Z] Backend running on port 5000
+[INFO] [2026-01-09T04:38:30.204Z] [WA] Restoring 0 sessions from Worker KV
+[INFO] [2026-01-09T04:38:30.205Z] All connected WhatsApp clients restored
+[INFO] [2026-01-09T04:38:30.219Z] Broadcast scheduler started
+[INFO] [2026-01-09T04:39:25.771Z] Message queue initialized
+[INFO] [2026-01-09T04:39:27.322Z] MongoDB connected successfully
+[INFO] [2026-01-09T04:39:27.338Z] Backend running on port 5000
+[INFO] [2026-01-09T04:39:27.400Z] [WA] Restoring 0 sessions from Worker KV
+[INFO] [2026-01-09T04:39:27.402Z] All connected WhatsApp clients restored
+[INFO] [2026-01-09T04:39:27.403Z] Broadcast scheduler started
+[INFO] [2026-01-09T04:40:23.695Z] Message queue initialized
+[INFO] [2026-01-09T04:40:25.424Z] MongoDB connected successfully
+[INFO] [2026-01-09T04:40:25.439Z] Backend running on port 5000
+[INFO] [2026-01-09T04:40:25.550Z] [WA] Restoring 0 sessions from Worker KV
+[INFO] [2026-01-09T04:40:25.550Z] All connected WhatsApp clients restored
+[INFO] [2026-01-09T04:40:25.551Z] Broadcast scheduler started
+[INFO] [2026-01-09T04:44:45.458Z] Message queue initialized
+[INFO] [2026-01-09T04:44:47.087Z] MongoDB connected successfully
+[INFO] [2026-01-09T04:44:47.099Z] Backend running on port 5000
+[INFO] [2026-01-09T04:44:47.185Z] [WA] Restoring 0 sessions from Worker KV
+[INFO] [2026-01-09T04:44:47.186Z] All connected WhatsApp clients restored
+[INFO] [2026-01-09T04:44:47.188Z] Broadcast scheduler started
+[INFO] [2026-01-09T04:45:18.162Z] Message queue initialized
+[INFO] [2026-01-09T04:45:19.959Z] MongoDB connected successfully
+[INFO] [2026-01-09T04:45:19.976Z] Backend running on port 5000
+[INFO] [2026-01-09T04:45:20.060Z] [WA] Restoring 0 sessions from Worker KV
+[INFO] [2026-01-09T04:45:20.061Z] All connected WhatsApp clients restored
+[INFO] [2026-01-09T04:45:20.062Z] Broadcast scheduler started
+[INFO] [2026-01-09T04:50:44.370Z] Message queue initialized
+[INFO] [2026-01-09T04:50:46.070Z] MongoDB connected successfully
+[INFO] [2026-01-09T04:50:46.082Z] Backend running on port 5000
+[INFO] [2026-01-09T04:50:46.176Z] [WA] Restoring 0 sessions from Worker KV
+[INFO] [2026-01-09T04:50:46.178Z] All connected WhatsApp clients restored
+[INFO] [2026-01-09T04:50:46.180Z] Broadcast scheduler started
+[INFO] [2026-01-09T04:53:16.899Z] Message queue initialized
+[INFO] [2026-01-09T04:53:19.237Z] MongoDB connected successfully
+[INFO] [2026-01-09T04:53:19.253Z] Backend running on port 5000
+[INFO] [2026-01-09T04:53:19.357Z] [WA] Restoring 0 sessions from Worker KV
+[INFO] [2026-01-09T04:53:19.375Z] All connected WhatsApp clients restored
+[INFO] [2026-01-09T04:53:19.401Z] Broadcast scheduler started
+[INFO] [2026-01-09T04:53:35.277Z] Message queue initialized
+[INFO] [2026-01-09T04:53:36.885Z] MongoDB connected successfully
+[INFO] [2026-01-09T04:53:36.900Z] Backend running on port 5000
+[INFO] [2026-01-09T04:53:36.991Z] [WA] Restoring 0 sessions from Worker KV
+[INFO] [2026-01-09T04:53:36.993Z] Broadcast scheduler started
+[INFO] [2026-01-09T04:53:36.992Z] All connected WhatsApp clients restored
+[INFO] [2026-01-09T11:30:49.024Z] Message queue initialized
+[INFO] [2026-01-09T11:30:52.338Z] MongoDB connected successfully
+[INFO] [2026-01-09T11:30:52.353Z] Backend running on port 5000
+[INFO] [2026-01-09T11:30:52.427Z] [WA] Restoring 0 sessions from Worker KV
+[INFO] [2026-01-09T11:30:52.441Z] All connected WhatsApp clients restored
+[INFO] [2026-01-09T11:30:52.444Z] Broadcast scheduler started
+[INFO] [2026-01-09T11:31:08.912Z] Message queue initialized
+[INFO] [2026-01-09T11:31:10.502Z] MongoDB connected successfully
+[INFO] [2026-01-09T11:31:10.518Z] Backend running on port 5000
+[INFO] [2026-01-09T11:31:10.582Z] [WA] Restoring 0 sessions from Worker KV
+[INFO] [2026-01-09T11:31:10.583Z] All connected WhatsApp clients restored
+[INFO] [2026-01-09T11:31:10.583Z] Broadcast scheduler started
+[INFO] [2026-01-09T11:32:55.093Z] Message queue initialized
+[INFO] [2026-01-09T11:32:57.204Z] MongoDB connected successfully
+[INFO] [2026-01-09T11:32:57.223Z] Backend running on port 5000
+[INFO] [2026-01-09T11:32:57.295Z] [WA] Restoring 0 sessions from Worker KV
+[INFO] [2026-01-09T11:32:57.301Z] All connected WhatsApp clients restored
+[INFO] [2026-01-09T11:32:57.304Z] Broadcast scheduler started
+[INFO] [2026-01-09T11:33:06.238Z] Message queue initialized
+[INFO] [2026-01-09T11:33:08.506Z] MongoDB connected successfully
+[INFO] [2026-01-09T11:33:08.528Z] Backend running on port 5000
+[INFO] [2026-01-09T11:33:08.633Z] [WA] Restoring 0 sessions from Worker KV
+[INFO] [2026-01-09T11:33:08.650Z] All connected WhatsApp clients restored
+[INFO] [2026-01-09T11:33:08.653Z] Broadcast scheduler started
+[INFO] [2026-01-09T11:33:51.084Z] Message queue initialized
+[INFO] [2026-01-09T11:33:53.310Z] MongoDB connected successfully
+[INFO] [2026-01-09T11:33:53.333Z] Backend running on port 5000
+[INFO] [2026-01-09T11:33:53.474Z] [WA] Restoring 0 sessions from Worker KV
+[INFO] [2026-01-09T11:33:53.476Z] All connected WhatsApp clients restored
+[INFO] [2026-01-09T11:33:53.481Z] Broadcast scheduler started
+[INFO] [2026-01-09T11:39:03.359Z] Message queue initialized
+[INFO] [2026-01-09T11:39:06.917Z] MongoDB connected successfully
+[INFO] [2026-01-09T11:39:06.929Z] Backend running on port 5000
+[INFO] [2026-01-09T11:39:07.044Z] [WA] Restoring 0 sessions from Worker KV
+[INFO] [2026-01-09T11:39:07.046Z] All connected WhatsApp clients restored
+[INFO] [2026-01-09T11:39:07.056Z] Broadcast scheduler started
+[INFO] [2026-01-09T11:39:40.013Z] Message queue initialized
+[INFO] [2026-01-09T11:39:42.161Z] MongoDB connected successfully
+[INFO] [2026-01-09T11:39:42.178Z] Backend running on port 5000
+[INFO] [2026-01-09T11:39:42.205Z] [WA] Restoring 0 sessions from Worker KV
+[INFO] [2026-01-09T11:39:42.205Z] All connected WhatsApp clients restored
+[INFO] [2026-01-09T11:39:42.207Z] Broadcast scheduler started
+[INFO] [2026-01-09T11:40:21.730Z] Message queue initialized
+[INFO] [2026-01-09T11:40:23.638Z] MongoDB connected successfully
+[INFO] [2026-01-09T11:40:23.655Z] Backend running on port 5000
+[INFO] [2026-01-09T11:40:23.760Z] [WA] Restoring 0 sessions from Worker KV
+[INFO] [2026-01-09T11:40:23.761Z] All connected WhatsApp clients restored
+[INFO] [2026-01-09T11:40:23.762Z] Broadcast scheduler started
+[INFO] [2026-01-09T11:42:07.153Z] Message queue initialized
+[INFO] [2026-01-09T11:42:08.801Z] MongoDB connected successfully
+[INFO] [2026-01-09T11:42:08.813Z] Backend running on port 5000
+[INFO] [2026-01-09T11:42:08.928Z] [WA] Restoring 0 sessions from Worker KV
+[INFO] [2026-01-09T11:42:08.930Z] All connected WhatsApp clients restored
+[INFO] [2026-01-09T11:42:08.931Z] Broadcast scheduler started
+[INFO] [2026-01-09T11:43:06.062Z] Message queue initialized
+[INFO] [2026-01-09T11:43:08.539Z] MongoDB connected successfully
+[INFO] [2026-01-09T11:43:08.557Z] Backend running on port 5000
+[INFO] [2026-01-09T11:43:08.722Z] [WA] Restoring 0 sessions from Worker KV
+[INFO] [2026-01-09T11:43:08.727Z] All connected WhatsApp clients restored
+[INFO] [2026-01-09T11:43:08.742Z] Broadcast scheduler started
+[INFO] [2026-01-09T11:46:34.909Z] Message queue initialized
+[INFO] [2026-01-09T11:46:39.690Z] MongoDB connected successfully
+[INFO] [2026-01-09T11:46:39.709Z] Backend running on port 5000
+[INFO] [2026-01-09T11:46:39.844Z] [WA] Restoring 0 sessions from Worker KV
+[INFO] [2026-01-09T11:46:39.854Z] All connected WhatsApp clients restored
+[INFO] [2026-01-09T11:46:39.854Z] Broadcast scheduler started
+[INFO] [2026-01-09T11:48:03.455Z] Message queue initialized
+[INFO] [2026-01-09T11:48:05.039Z] MongoDB connected successfully
+[INFO] [2026-01-09T11:48:05.050Z] Backend running on port 5000
+[INFO] [2026-01-09T11:48:05.176Z] [WA] Restoring 2 sessions from Worker KV
+[INFO] [2026-01-09T11:48:28.149Z] [WA:undefined] QR required
+[INFO] [2026-01-09T11:48:28.176Z] All connected WhatsApp clients restored
+[INFO] [2026-01-09T11:48:28.177Z] Broadcast scheduler started
+[INFO] [2026-01-09T11:48:48.227Z] Message queue initialized
+[INFO] [2026-01-09T11:48:50.381Z] MongoDB connected successfully
+[INFO] [2026-01-09T11:48:50.398Z] Backend running on port 5000
+[INFO] [2026-01-09T11:48:50.575Z] [WA] Restoring 2 sessions from Worker KV
+[INFO] [2026-01-09T11:49:16.018Z] All connected WhatsApp clients restored
+[INFO] [2026-01-09T11:49:16.021Z] Broadcast scheduler started
+[INFO] [2026-01-09T11:49:16.082Z] [WA:undefined] QR required
+[INFO] [2026-01-09T11:50:15.694Z] [WA:undefined] QR required
+[INFO] [2026-01-09T11:50:48.976Z] [WA:695932168a9879344ba3c854] QR required
+[INFO] [2026-01-09T11:51:48.636Z] [WA:695932168a9879344ba3c854] QR required
+[INFO] [2026-01-09T11:56:30.057Z] Message queue initialized
+[INFO] [2026-01-09T11:56:34.316Z] MongoDB connected successfully
+[INFO] [2026-01-09T11:56:34.332Z] Backend running on port 5000
+[INFO] [2026-01-09T11:56:34.341Z] [WA] Restoring 0 sessions from Worker KV
+[INFO] [2026-01-09T11:56:34.342Z] All connected WhatsApp clients restored
+[INFO] [2026-01-09T11:56:34.344Z] Broadcast scheduler started
+[INFO] [2026-01-09T12:05:30.280Z] Message queue initialized
+[INFO] [2026-01-09T12:05:33.470Z] MongoDB connected successfully
+[INFO] [2026-01-09T12:05:33.508Z] Backend running on port 5000
+[INFO] [2026-01-09T12:05:33.562Z] All connected WhatsApp clients restored
+[INFO] [2026-01-09T12:05:33.550Z] [WA] Restoring 0 sessions from Worker KV
+[INFO] [2026-01-09T12:05:33.563Z] Broadcast scheduler started
+[INFO] [2026-01-09T12:09:33.516Z] Message queue initialized
+[INFO] [2026-01-09T12:09:35.765Z] MongoDB connected successfully
+[INFO] [2026-01-09T12:09:35.782Z] Backend running on port 5000
+[INFO] [2026-01-09T12:09:35.817Z] [WA] Restoring 0 sessions from Worker KV
+[INFO] [2026-01-09T12:09:35.818Z] All connected WhatsApp clients restored
+[INFO] [2026-01-09T12:09:35.820Z] Broadcast scheduler started
+[INFO] [2026-01-09T12:11:48.314Z] Message queue initialized
+[INFO] [2026-01-09T12:11:50.604Z] MongoDB connected successfully
+[INFO] [2026-01-09T12:11:50.618Z] Backend running on port 5000
+[INFO] [2026-01-09T12:11:50.901Z] [WA] Restoring 3 sessions from Worker KV
+[INFO] [2026-01-09T12:12:08.963Z] [WA:undefined] QR required
+[INFO] [2026-01-09T12:12:09.003Z] All connected WhatsApp clients restored
+[INFO] [2026-01-09T12:12:09.004Z] Broadcast scheduler started
+[INFO] [2026-01-09T12:13:08.640Z] [WA:undefined] QR required
+[INFO] [2026-01-09T12:13:56.539Z] [WA:695932168a9879344ba3c854] QR required
+[INFO] [2026-01-09T12:14:56.085Z] [WA:695932168a9879344ba3c854] QR required
+[INFO] [2026-01-09T12:16:08.267Z] Message queue initialized
+[INFO] [2026-01-09T12:16:11.791Z] MongoDB connected successfully
+[INFO] [2026-01-09T12:16:11.803Z] Backend running on port 5000
+[INFO] [2026-01-09T12:16:11.895Z] [WA] Restoring 3 sessions from Worker KV
+[ERROR] [2026-01-09T12:16:34.787Z] [WA:undefined] Restore failed: net::ERR_CONNECTION_TIMED_OUT at https://web.whatsapp.com/
+[ERROR] [2026-01-09T12:16:40.927Z] [WA:undefined] Restore failed: net::ERR_NAME_NOT_RESOLVED at https://web.whatsapp.com/
