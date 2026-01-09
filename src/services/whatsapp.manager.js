@@ -1,163 +1,123 @@
-import WhatsAppSession from "../models/WhatsAppSession.js";
 import pkg from "whatsapp-web.js";
-const { Client } = pkg;
-
 import { logger } from "../utils/logger.js";
 import { handleIncomingMessage } from "../utils/message.dispatcher.js";
+import { saveSession, loadSession, loadAllSessions, deleteSession } from "./sessionStore.js";
 
-const clients = new Map();       // userId -> client
-const readyClients = new Set();  // userId -> ready
+const { Client } = pkg;
 
+/* -------------------- MEMORY -------------------- */
+const clients = new Map();
+const readyClients = new Set();
+
+/* -------------------- PUBLIC API -------------------- */
 export function getClient(userId) {
-  const key = String(userId);
-  if (!clients.has(key)) return null;
-  if (!readyClients.has(key)) return null;
-  return clients.get(key);
+  const k = String(userId);
+  return readyClients.has(k) ? clients.get(k) : null;
 }
 
 export async function waitForClientReady(userId, timeout = 60000) {
-  const key = String(userId);
+  const k = String(userId);
   const start = Date.now();
 
   while (Date.now() - start < timeout) {
-    if (readyClients.has(key)) return true;
-    await new Promise((r) => setTimeout(r, 1000));
+    if (readyClients.has(k)) return true;
+    await new Promise(r => setTimeout(r, 1000));
   }
 
-  throw new Error(`WhatsApp client not ready for user ${userId}`);
-}
-
-export function setClient(userId, client) {
-  clients.set(String(userId), client);
+  throw new Error(`Client not ready: ${userId}`);
 }
 
 export async function destroyClient(userId, logout = false) {
-  const key = String(userId);
-  const client = clients.get(key);
+  const k = String(userId);
+  const client = clients.get(k);
   if (!client) return;
 
   try {
     if (logout) await client.logout();
     await client.destroy();
   } catch (err) {
-    logger.error(`[WA:${userId}] Destroy error: ${err.message}`);
+    logger.error(`[WA:${userId}] Destroy failed`);
   }
 
-  clients.delete(key);
-  readyClients.delete(key);
+  clients.delete(k);
+  readyClients.delete(k);
 }
 
-export async function initWhatsAppUser(userId) {
-  const key = String(userId);
+/* -------------------- INIT USER -------------------- */
+export async function initWhatsAppUser(userId, preloadedSession = null) {
+  const k = String(userId);
+  if (clients.has(k)) return clients.get(k);
 
-  if (clients.has(key)) {
-    logger.info(`[WA:${userId}] Client already initialized`);
-    return clients.get(key);
-  }
-
-  // 🔹 Load existing session from MongoDB
-  const existingSession = await WhatsAppSession.findOne({ userId });
+  const session = preloadedSession || await loadSession(userId);
 
   const client = new Client({
-    session: existingSession?.session || undefined, // use Mongo session if exists
-    puppeteer: {
-      headless: true,
-      args: ["--no-sandbox", "--disable-setuid-sandbox"],
-    },
+    session: session || undefined,
+    puppeteer: { headless: true, args: ["--no-sandbox", "--disable-setuid-sandbox"] },
   });
 
-  /* ------------------ EVENTS ------------------ */
-
-  // 🔹 Save session on authentication
-  client.on("authenticated", async (session) => {
-    logger.info(`[WA:${userId}] Authenticated, saving session to MongoDB`);
-    await WhatsAppSession.updateOne(
-      { userId },
-      {
-        $set: {
-          session,            // 🔑 Save the actual WhatsApp auth payload
-          connected: true,
-          requiresQR: false,
-          qr: null,
-        },
-      },
-      { upsert: true }
-    );
-  });
-
-  client.on("ready", async () => {
-    readyClients.add(key);
-    logger.info(`[WA:${userId}] Ready`);
-
-    // update status
-    await WhatsAppSession.updateOne(
-      { userId },
-      { connected: true, requiresQR: false, qr: null },
-      { upsert: true }
-    );
-  });
-
-  client.on("qr", async (qr) => {
-    logger.info(`[WA:${userId}] QR generated`);
-
-    await WhatsAppSession.updateOne(
-      { userId },
-      { connected: false, requiresQR: true, qr },
-      { upsert: true }
-    );
-  });
-
-  client.on("disconnected", async (reason) => {
-    logger.warn(`[WA:${userId}] Disconnected: ${reason}`);
-
-    readyClients.delete(key);
-    clients.delete(key);
-
-    await WhatsAppSession.updateOne(
-      { userId },
-      { connected: false, requiresQR: true, qr: null }
-    );
-  });
-
-  /* ---------------- MESSAGE PIPELINE ---------------- */
-
-  client.on("message", async (msg) => {
+  /* -------------------- EVENTS -------------------- */
+  client.on("authenticated", async session => {
     try {
-      if (!msg?.body) return;
-
-      logger.debug(`[WA:${userId}] Incoming message from ${msg.from}`);
-
-      await handleIncomingMessage({
-        userId,
-        client,
-        msg,
-      });
-    } catch (err) {
-      logger.error(`[WA:${userId}] Message handler error: ${err.message}`);
+      await saveSession(userId, JSON.parse(JSON.stringify(session)));
+      logger.info(`[WA:${userId}] Authenticated`);
+    } catch (e) {
+      logger.error(`[WA:${userId}] Auth save failed`);
     }
   });
 
-  /* -------------------------------------------------- */
+  client.on("ready", async () => {
+    readyClients.add(k);
+    logger.info(`[WA:${userId}] Ready`);
+
+    try {
+      const s = client.getSession?.();
+      if (s) await saveSession(userId, JSON.parse(JSON.stringify(s)));
+    } catch (_) {}
+  });
+
+  client.on("qr", async qr => {
+    await saveSession(userId, null); // session is null until authenticated
+    logger.info(`[WA:${userId}] QR required`);
+  });
+
+  client.on("disconnected", async reason => {
+    readyClients.delete(k);
+    clients.delete(k);
+
+    await saveSession(userId, null);
+    logger.warn(`[WA:${userId}] Disconnected: ${reason}`);
+  });
+
+  client.on("message", async msg => {
+    if (!msg?.body) return;
+    await handleIncomingMessage({ userId, client, msg });
+  });
+
+  /* -------------------- AUTO DESTROY IF NOT READY -------------------- */
+  setTimeout(async () => {
+    if (!readyClients.has(k)) {
+      await destroyClient(userId, true);
+      await saveSession(userId, null);
+    }
+  }, 90_000);
 
   await client.initialize();
-  setClient(userId, client);
-
-  logger.info(`[WA:${userId}] Client initialized (awaiting ready)`);
+  clients.set(k, client);
 
   return client;
 }
 
+/* -------------------- RESTORE ALL -------------------- */
 export async function initAllWhatsAppUsers() {
-  const sessions = await WhatsAppSession.find({ connected: true });
+  const sessions = await loadAllSessions();
+  logger.info(`[WA] Restoring ${sessions.length} sessions from Worker KV`);
 
-  logger.info(`[WA] Restoring ${sessions.length} sessions`);
-
-  for (const session of sessions) {
+  for (const s of sessions) {
     try {
-      await initWhatsAppUser(session.userId);
-      logger.info(`[WA:${session.userId}] Restore initiated`);
-    } catch (err) {
-      logger.error(`[WA:${session.userId}] Restore failed: ${err.message}`);
+      const decrypted = s.session ? JSON.parse(s.session) : null;
+      await initWhatsAppUser(s.userId, decrypted);
+    } catch (e) {
+      logger.error(`[WA:${s.userId}] Restore failed: ${e.message}`);
     }
   }
 }

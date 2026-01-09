@@ -1,8 +1,8 @@
-// app.js
 import express from "express";
 import cors from "cors";
 import session from "express-session";
-import MongoStore from "connect-mongodb-session";
+import MongoStore from "connect-mongo";
+import dotenv from "dotenv";
 
 import leadsRoutes from "./routes/leads.routes.js";
 import templatesRoutes from "./routes/templates.routes.js";
@@ -15,32 +15,29 @@ import userRoutes from "./routes/user.routes.js";
 
 import { errorHandler } from "./middlewares/errorHandler.js";
 
+dotenv.config();
+
 const app = express();
-app.use(cors({ origin: true, credentials: true })); // allow cookies
+app.use(cors({ origin: true, credentials: true }));
 app.use(express.json());
 
-// --- MongoDB Session Setup ---
-const mongoStore = new MongoStore({
-  uri: process.env.MONGO_URI,
-  collection: "sessions",
-});
-
+// --- MongoDB session setup for web login ---
 app.use(
   session({
     secret: process.env.SESSION_SECRET || "supersecretkey",
     resave: false,
     saveUninitialized: false,
-    store: mongoStore,
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGO_URI,
+      collectionName: "sessions",
+    }),
     cookie: {
-      maxAge: 1000 * 60 * 60 * 24 * 60, // 1 day
+      maxAge: 1000 * 60 * 60 * 24, // 1 day
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
     },
   })
 );
-
-// --- Initialize WhatsApp session map ---
-const whatsappInitSessions = new Map(); // you can still track QR init sessions in-memory
 
 // --- Routes ---
 app.get("/", (req, res) => res.send("Whatsapp Automator is running"));
@@ -55,20 +52,5 @@ app.use("/api/auto-replies", autoReplyRoutes);
 app.use("/api/users", userRoutes);
 
 app.use(errorHandler);
-
-// --- WhatsApp QR termination route ---
-app.post("/whatsapp/terminate-init", async (req, res) => {
-  const userId = req.session.user?.id; // now reading from session
-  if (!userId) return res.status(401).json({ message: "Not logged in" });
-
-  const session = whatsappInitSessions.get(userId);
-  if (session) {
-    session.kill(); // stop QR generation / init logic
-    whatsappInitSessions.delete(userId);
-    return res.json({ message: "QR generation terminated" });
-  }
-
-  return res.json({ message: "No QR generation session found" });
-});
 
 export default app;

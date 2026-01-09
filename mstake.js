@@ -1,29 +1,27 @@
-// seedSettings.js
-import mongoose from "mongoose";
-import User from "./src/models/User.js";
-import Settings from "./src/models/Setting.js";
+import 'dotenv/config'; // loads process.env automatically
+import { S3Client, ListBucketsCommand } from "@aws-sdk/client-s3";
 
-const MONGO_URI = "mongodb://localhost:27017/whatsappAutomatordb"; // replace with your DB
+// Using API Token instead of Access Key/Secret
+const R2_ACCOUNT_ID = process.env.R2_ACCOUNT_ID;
+const R2_API_TOKEN = process.env.R2_API_TOKEN;
 
-async function seedSettings() {
-  await mongoose.connect(MONGO_URI);
-  console.log("Connected to DB");
+const r2 = new S3Client({
+  region: "auto",
+  endpoint: `https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com`,
+  credentials: {
+    accessKeyId: R2_API_TOKEN,  // Use token as accessKeyId
+    secretAccessKey: "",         // Leave secret empty
+  },
+});
 
-  const users = await User.find();
-
-  for (const user of users) {
-    const exists = await Settings.findOne({ userId: user._id });
-    if (!exists) {
-      await Settings.create({ userId: user._id });
-      console.log(`Settings created for user ${user._id}`);
-    }
+async function checkR2Connection() {
+  try {
+    const result = await r2.send(new ListBucketsCommand({}));
+    console.log("✅ R2 connection successful!");
+    console.log("Buckets:", result.Buckets.map(b => b.Name));
+  } catch (err) {
+    console.error("❌ Failed to connect to R2:", err);
   }
-
-  console.log("Seeding completed");
-  await mongoose.disconnect();
 }
 
-seedSettings().catch(err => {
-  console.error(err);
-  mongoose.disconnect();
-});
+checkR2Connection();
