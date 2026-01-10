@@ -1,5 +1,6 @@
-// WhatsAppManager.js (Render-ready + Chrome headers)
+// WhatsAppManager.js (Render-ready with npm Chromium)
 import pkg from "whatsapp-web.js";
+import chromium from "chromium"; // ✅ Added Chromium from npm
 import sessionStore from "./sessionStore.js";
 import WhatsAppSession from "../models/WhatsAppSession.js";
 import { logger } from "../utils/logger.js";
@@ -63,6 +64,7 @@ export async function initWhatsAppUser(userId) {
     session: existingSession || undefined,
     puppeteer: {
       headless: true,
+      executablePath: chromium.path, // ✅ Use npm Chromium
       args: [
         "--no-sandbox",
         "--disable-setuid-sandbox",
@@ -111,9 +113,7 @@ export async function initWhatsAppUser(userId) {
 
   // 🔹 QR generated
   client.on("qr", async (qr) => {
-    // Force client to be unready while QR is being generated
-    readyClients.delete(key);
-
+    readyClients.delete(key); // force waitForClientReady refresh
     logger.info(`[WA:${userId}] QR generated`);
 
     await WhatsAppSession.updateOne(
