@@ -1,6 +1,6 @@
-// WhatsAppManager.js (Render-ready with npm Chromium)
+// WhatsAppManager.js (Render-ready, persistent session via sessionStore)
 import pkg from "whatsapp-web.js";
-import chromium from "chromium"; // ✅ Added Chromium from npm
+import chromium from "chromium";
 import sessionStore from "./sessionStore.js";
 import WhatsAppSession from "../models/WhatsAppSession.js";
 import { logger } from "../utils/logger.js";
@@ -35,6 +35,9 @@ export async function destroyClient(userId, logout = false) {
 
   clients.delete(key);
   readyClients.delete(key);
+
+  // Remove session on permanent logout only
+  if (logout) await sessionStore.remove(userId);
 }
 
 export async function waitForClientReady(userId, timeout = 60000) {
@@ -57,14 +60,14 @@ export async function initWhatsAppUser(userId) {
     return clients.get(key);
   }
 
-  // 🔹 Load existing session
+  // Load existing session from persistent store
   const existingSession = await sessionStore.get(userId);
 
   const client = new Client({
     session: existingSession || undefined,
     puppeteer: {
       headless: true,
-      executablePath: chromium.path, // ✅ Use npm Chromium
+      executablePath: chromium.path,
       args: [
         "--no-sandbox",
         "--disable-setuid-sandbox",
@@ -81,10 +84,10 @@ export async function initWhatsAppUser(userId) {
 
   /* ------------------ EVENTS ------------------ */
 
-  // 🔹 Save session on authentication
+  // 🔹 Session authenticated
   client.on("authenticated", async (session) => {
     if (!session || typeof session !== "object") {
-      logger.warn(`[WA:${userId}] Authenticated event received invalid session data`);
+      logger.warn(`[WA:${userId}] Authenticated event invalid session`);
       console.log(`[WA:${userId}] Raw authenticated payload:`, session);
       return;
     }
@@ -93,17 +96,12 @@ export async function initWhatsAppUser(userId) {
     await sessionStore.set(userId, session);
   });
 
-  // 🔹 Client is ready
+  // 🔹 Client ready
   client.on("ready", async () => {
     readyClients.add(key);
     logger.info(`[WA:${userId}] Ready`);
 
-    // Capture session if not already saved
-    if (client?.session && typeof client.session === "object") {
-      await sessionStore.set(userId, client.session);
-    }
-
-    // Update status in Mongo directly
+    // Update MongoDB status
     await WhatsAppSession.updateOne(
       { userId },
       { connected: true, requiresQR: false, qr: null },
@@ -113,7 +111,9 @@ export async function initWhatsAppUser(userId) {
 
   // 🔹 QR generated
   client.on("qr", async (qr) => {
-    readyClients.delete(key); // force waitForClientReady refresh
+    // Only mark client not ready if no existing session
+    if (!existingSession) readyClients.delete(key);
+
     logger.info(`[WA:${userId}] QR generated`);
 
     await WhatsAppSession.updateOne(
@@ -126,14 +126,13 @@ export async function initWhatsAppUser(userId) {
   // 🔹 Disconnected
   client.on("disconnected", async (reason) => {
     logger.warn(`[WA:${userId}] Disconnected: ${reason}`);
-
     readyClients.delete(key);
     clients.delete(key);
 
-    // Remove stored session completely
-    await sessionStore.remove(userId);
+    // Only remove session if permanent logout
+    if (reason === "logout") await sessionStore.remove(userId);
 
-    // Update status in Mongo
+    // Update Mongo status
     await WhatsAppSession.updateOne(
       { userId },
       { connected: false, requiresQR: true, qr: null }
@@ -141,7 +140,6 @@ export async function initWhatsAppUser(userId) {
   });
 
   /* ---------------- MESSAGE PIPELINE ---------------- */
-
   client.on("message", async (msg) => {
     try {
       if (!msg?.body) return;
@@ -157,7 +155,6 @@ export async function initWhatsAppUser(userId) {
 
   await client.initialize();
   setClient(userId, client);
-
   logger.info(`[WA:${userId}] Client initialized (awaiting ready)`);
 
   return client;
