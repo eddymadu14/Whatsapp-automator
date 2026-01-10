@@ -1,4 +1,4 @@
-// WhatsAppManager.js (robust version)
+// WhatsAppManager.js (Render-ready + Chrome headers)
 import pkg from "whatsapp-web.js";
 import sessionStore from "./sessionStore.js";
 import WhatsAppSession from "../models/WhatsAppSession.js";
@@ -56,14 +56,24 @@ export async function initWhatsAppUser(userId) {
     return clients.get(key);
   }
 
-  // 🔹 Load existing session using sessionStore
+  // 🔹 Load existing session
   const existingSession = await sessionStore.get(userId);
 
   const client = new Client({
     session: existingSession || undefined,
     puppeteer: {
       headless: true,
-      args: ["--no-sandbox", "--disable-setuid-sandbox"],
+      args: [
+        "--no-sandbox",
+        "--disable-setuid-sandbox",
+        "--disable-dev-shm-usage",
+        "--disable-extensions",
+        "--disable-gpu",
+        "--window-size=1920,1080"
+      ],
+      defaultViewport: null,
+      userAgent:
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36"
     },
   });
 
@@ -101,6 +111,9 @@ export async function initWhatsAppUser(userId) {
 
   // 🔹 QR generated
   client.on("qr", async (qr) => {
+    // Force client to be unready while QR is being generated
+    readyClients.delete(key);
+
     logger.info(`[WA:${userId}] QR generated`);
 
     await WhatsAppSession.updateOne(
